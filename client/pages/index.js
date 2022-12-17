@@ -166,7 +166,7 @@ export default function Home() {
         {currentAccount ? (
           <div>
             <form>
-              <div class="formgroup">
+              <div className="formgroup">
                 <label>
                   Name
                 </label>
@@ -174,7 +174,7 @@ export default function Home() {
                 <input id='name' type='text' placeholder='Your name here...' onChange={onNameChange} />
               </div>
               <br/>
-              <div class='formgroup'>
+              <div className='formgroup'>
                 <label>
                   Send CryptoHero a message
                 </label>
@@ -199,8 +199,8 @@ export default function Home() {
       { currentAccount && (<h1>Memos received</h1>) }
       { currentAccount && (memos.map((memo, idx) => {
         return (
-          <div key = {idx} style = {{border: '2px solid', 'border-radius': '5px', padding: '5px', margin: '5px'}}>
-            <p style={{'font-weight': 'bold'}}>{memo.message}</p>
+          <div key = {idx} style = {{border: '2px solid', borderRadius: '5px', padding: '5px', margin: '5px'}}>
+            <p style={{fontWeight: 'bold'}}>{memo.message}</p>
             <p>From: {memo.name} at {memo.timestamp.toString()}</p>
           </div>
         )

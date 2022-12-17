@@ -15,6 +15,7 @@ npx hardhat run scripts/deploy.js
 For simple test purpose on console, run below command.
 ```shell
 npx hardhat run scripts/buy-coffee.js
+npx hardhat run scripts/withdraw.js
 ```
 
 To deploy, run below command
