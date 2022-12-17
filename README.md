@@ -1,16 +1,6 @@
 # Buy Me Coffee DApp
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
-
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+This project demonstrates How to buy coffee to contract owner.
 
 For simple test purpose on console, run below command.
 ```shell
@@ -26,4 +16,8 @@ npx hardhat run scripts/deploy.js
 Goerli deploy is below.
 ```shell
 npx hardhat run scripts/deploy.js --network goerli
+```
+To see website, run the following command.
+```shell
+cd client && npm run dev
 ```
