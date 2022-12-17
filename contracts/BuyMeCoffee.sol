@@ -12,7 +12,7 @@ contract BuyMeCoffee {
         string message
     );
 
-    string Memo {
+    struct Memo {
         address from;
         uint256 timestamp;
         string name;
@@ -30,7 +30,7 @@ contract BuyMeCoffee {
     /**
      * fetch all memos
      */
-    function getMemos public view returns (Memo[] memory) {
+    function getMemos() public view returns (Memo[] memory) {
         return memos;
     }
 

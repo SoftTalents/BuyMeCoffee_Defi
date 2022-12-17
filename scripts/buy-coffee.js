@@ -1,9 +1,3 @@
-// We require the Hardhat Runtime Environment explicitly here. This is optional
-// but useful for running the script in a standalone fashion through `node <script>`.
-//
-// You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
-// will compile your contracts, add the Hardhat Runtime Environment's members to the
-// global scope, and execute the script.
 const hre = require("hardhat");
 
 // Returns the Ether balance of a given address
@@ -16,7 +10,7 @@ async function getBalance(address) {
 async function printBalances(addresses) {
   let idx = 0;
   for (const address of addresses) {
-    console.log(`Address ${idx} balance: `, await getBlanace(address));
+    console.log(`Address ${idx} balance: `, await getBalance(address));
     idx++;
   }
 }
@@ -44,11 +38,35 @@ async function main() {
   console.log(
     `BuyMeCoffee deployed to ${buyMeCoffee.address}`
   );
+
+  // Check balances before the coffee purchase
+  const addresses = [owner.address, tipper.address, buyMeCoffee.address];
+  await printBalances(addresses);
+
+  // Buy the owner a few coffees
+  const tip = {value: hre.ethers.utils.parseEther('1')};
+  await buyMeCoffee.connect(tipper).buyCoffee('Carolina', "You're the best!", tip);
+  
+  // Check the balances after coffee purchase
+  console.log('=== After Coffee Buy ===')
+  await printBalances(addresses);
+
+  // withdraw
+  await buyMeCoffee.connect(owner).withdrawTips();
+
+  // Check the balances after withdrawl
+  console.log('=== after withdrawTips ===')
+  await printBalances(addresses);
+
+  // Show Memos
+  console.log('=== Memos ===');
+  const memos = await buyMeCoffee.getMemos();
+  printMemos(memos);
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
